@@ -1,0 +1,1 @@
+(()=>{"use strict";!function(){const e=document.querySelector(".add-todo"),o=document.querySelector(".add-todo-modal"),t=document.querySelector(".cancel-todo");e.addEventListener("click",(()=>{o.showModal()})),t.addEventListener("click",(()=>{o.close()}))}()})();
