@@ -49,66 +49,6 @@ button {
   color: var(--color-900);
 }
 
-/** ADD TODO FORM */
-dialog {
-  width: 300px;
-  height: 450px;
-  padding: 20px;
-  background-color: var(--color-50);
-  border: 2px solid var(--color-600);
-  border-radius: 5px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-form {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.form-row {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.form-row input[type="text"],
-.form-row input[type="date"] {
-  height: 30px;
-  background-color: #fff;
-  border: 2px solid var(--color-500);
-  font-size: 16px;
-}
-
-.form-row:nth-child(4) {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-}
-
-.form-row:last-child {
-  gap: 1.5rem;
-}
-
-.form-row button {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  background-color: var(--color-400);
-}
-
-.form-row button:hover {
-  background-color: var(--color-600);
-  color: white;
-}
-
 /** SIDEBAR **/
 
 .sidebar {
@@ -147,15 +87,64 @@ form {
   gap: 20px;
 }
 
+/** PROJECTS **/
+
 .projects {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
+.project {
+  border-bottom: 2px solid var(--color-400);
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.project i {
+  cursor: pointer;
+}
+
+.project i:hover {
+  transform: scale(1.05);
+  color: var(--color-900);
+}
+
+.project-name {
+  border: none !important;
+}
+
 .add-project {
   margin-top: 24px;
   width: 100%;
+}
+
+.new-project-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.new-project-form input {
+  background-color: transparent;
+  border: none;
+  height: 2rem;
+  border-bottom: 2px solid var(--color-500);
+  grid-column: 1 / 3;
+}
+
+.new-proj-btn {
+  background-color: rgb(243, 165, 165) !important;
+  border-radius: 12px;
+  width: 100%;
+  line-height: 0%;
+  border: none !important;
+  grid-row: 2 / 3;
 }
 
 /** CONTENT **/
@@ -173,6 +162,7 @@ form {
   height: 50px;
   gap: 50px;
   font-size: 20px;
+  margin-bottom: 12px;
 }
 
 .todo-item {
@@ -195,7 +185,7 @@ form {
 }
 
 .todo button,
-.add-todo {
+.add-task-btn {
   padding: 1rem;
   background-color: transparent;
   border: 2px solid var(--color-300);
@@ -205,8 +195,62 @@ form {
 }
 
 .todo button:hover,
-.add-todo:hover {
+.add-task-btn:hover {
   border-color: var(--color-900);
   background-color: var(--color-600);
   color: white;
 }
+
+.add-task-btn {
+  width: fit-content;
+  align-self: center;
+  border-radius: 40%;
+}
+
+/** ADD TASK FORM */
+.new-task-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.form-row input[type="text"],
+.form-row input[type="date"] {
+  height: 30px;
+  background-color: #fff;
+  border: 2px solid var(--color-500);
+  font-size: 16px;
+}
+
+.form-row:nth-child(4) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-row:last-child {
+  gap: 1.5rem;
+}
+
+.form-row button {
+  padding: 10px;
+  border-radius: 6px;
+  width: 10rem;
+  border: none;
+  background-color: var(--color-400);
+}
+
+.form-row button:hover {
+  background-color: var(--color-600);
+  color: white;
+}
+
