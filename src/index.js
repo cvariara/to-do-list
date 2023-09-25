@@ -1,3 +1,6 @@
-import { createTodo } from "./createTodo";
+import { DOM_EVENTS } from "./DOMEvents";
 
-createTodo();
+
+document.addEventListener("DOMContentLoaded", () => {
+  DOM_EVENTS();
+})

@@ -4,89 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/1b8ae377e6.js" crossorigin="anonymous"></script>
     <title>To-Do List</title>
   </head>
   <body>
     <div id="container">
       <div class="nav">
         <h1>To-Do List</h1>
-        <button class="add-todo">+</button>
       </div>
-      <dialog class="add-todo-modal">
-        <form action="#">
-          <div class="form-row">
-            <label for="project">Project</label>
-            <input
-              type="text"
-              name="project"
-              id="project-name"
-              placeholder="Work"
-            />
-          </div>
-          <div class="form-row">
-            <label for="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Finish Debugging Project"
-            />
-          </div>
-          <div class="form-row">
-            <label for="due-date">Due Date</label>
-            <input type="date" name="due-date" id="due-date" />
-          </div>
-          <div class="form-row">
-            <label for="important">Important</label>
-            <input type="checkbox" name="important" id="important" />
-          </div>
-          <div class="form-row">
-            <button class="submit-todo">Add Task</button>
-            <button class="cancel-todo">Cancel</button>
-          </div>
-        </form>
-      </dialog>
       <div class="sidebar">
         <div class="links">
           <div class="tasks">
-            <button class="task active">Home</button>
-            <button class="task">Today</button>
-            <button class="task">This Week</button>
-            <button class="task">Important</button>
+            <button class="task active" id="home">Home</button>
+            <button class="task" id="today">Today</button>
+            <button class="task" id="week">This Week</button>
+            <button class="task" id="important">Important</button>
           </div>
           <div id="projects">
             <h2>Projects</h2>
             <div class="projects">
-              <button class="project">School</button>
-              <button class="project">Work</button>
+              <button id="add-project-btn" class="add-project">Add Project</button>
             </div>
-            <button class="add-project">Add Project</button>
           </div>
         </div>
       </div>
-      <div class="content">
-        <div class="todo">
-          <div class="todo-item">
-            <div class="todo-item-name-category">
-              <p class="todo-item-priority"></p>
-              <p class="todo-item-name">Do HW</p>
-              <p class="todo-proj" id="school">- School</p>
-            </div>
-            <p class="due-date">09-29-2023</p>
-          </div>
-          <button class="not-complete">✓</button>
-        </div>
-        <div class="todo">
-          <div class="todo-item">
-            <div class="todo-item-name-category">
-              <p class="todo-item-priority">*</p>
-              <p class="todo-item-name">Finish Coding Project</p>
-              <p class="todo-proj" id="work">- Work</p>
-            </div>
-            <p class="due-date">10-13-2023</p>
-          </div>
-          <button class="not-complete">X</button>
-        </div>
+      <div class="content" id="content">
+        <h1 id="title">Home</h1>
+        <div id="todo-cards"></div>
       </div>
     </div>
     <script src="main.js"></script>
