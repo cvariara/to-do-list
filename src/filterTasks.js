@@ -41,7 +41,6 @@ const priority = () => {
   });
 };
 
-
 const byProject = (project) => {
   const tasks = document.querySelectorAll("#todo-cards .todo");
   Array.from(tasks).forEach((task) => {
@@ -51,7 +50,7 @@ const byProject = (project) => {
     } else {
       task.style.display = "flex";
     }
-  })
+  });
 };
 
 export { all, today, thisWeek, priority, byProject };

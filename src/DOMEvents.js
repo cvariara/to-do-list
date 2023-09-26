@@ -22,11 +22,10 @@ class UI {
 
   addProject(project) {
     const projects = document.querySelector(".projects");
-    // console.log(project.title);
     const newProject = document.createElement("div");
     newProject.classList.add("project");
     newProject.innerHTML = `
-    <i class="fa-solid fa-bars" id="remove-project"></i>
+    <i class="fa-solid fa-xmark" id="remove-project"></i>
     <button class="project-name">${project.title}</button>
     `;
 
@@ -149,7 +148,6 @@ class UI {
   }
 
   addTask(task) {
-    // console.log(task);
     this.showAddTaskBtn();
     const cards = document.querySelector("#todo-cards");
     const newTask = document.createElement("div");
@@ -217,7 +215,6 @@ class UI {
   }
 
   removeTask(taskTitleEl, tasks) {
-    console.log(taskTitleEl)
     const taskTitle = taskTitleEl.querySelector(".todo-item-name").textContent;
     const taskIndex = tasks.findIndex((task) => task.title === taskTitle);
 
@@ -329,9 +326,7 @@ const DOM_EVENTS = () => {
     if (e.target.matches("#submit-task-btn")) {
       e.preventDefault();
       const form = document.querySelector(".new-task-form");
-      console.log(form.task_title.value);
       if (form.task_title.value === "" || form.due_date.value === "") {
-        console.log("nope");
         return ui.showMessage(
           "Please fill in all the fields appropriately.",
           "alert"
@@ -359,7 +354,6 @@ const DOM_EVENTS = () => {
     }
 
     if (e.target.matches("#not-complete")) {
-      console.log(e.target.parentElement)
       ui.removeTask(e.target.parentElement, tasks);
     }
 
@@ -369,4 +363,4 @@ const DOM_EVENTS = () => {
   });
 };
 
-export { DOM_EVENTS, UI };
+export { DOM_EVENTS };
