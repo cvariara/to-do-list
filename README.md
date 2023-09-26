@@ -1,4 +1,4 @@
-# Pizza Restaurant Page
+# To-Do List
 
 To-Do List using webpacks and local storage.
 
