@@ -26,7 +26,7 @@ class UI {
     const newProject = document.createElement("div");
     newProject.classList.add("project");
     newProject.innerHTML = `
-    <i class="fa-solid fa-bars"></i>
+    <i class="fa-solid fa-bars" id="remove-project"></i>
     <button class="project-name">${project.title}</button>
     `;
 
@@ -172,10 +172,82 @@ class UI {
 
     cards.appendChild(newTask);
   }
+
+  // Method to save projects to local storage
+  saveProjects(projects) {
+    localStorage.setItem(
+      "projects",
+      JSON.stringify(projects.map((project) => project.toJSON()))
+    );
+  }
+
+  // Method to load projects from local storage
+  loadProjects() {
+    const projectsData = JSON.parse(localStorage.getItem("projects")) || [];
+    return projectsData.map((projectData) => Project.fromJSON(projectData));
+  }
+
+  // Method to save tasks to local storage
+  saveTasks(tasks) {
+    localStorage.setItem(
+      "tasks",
+      JSON.stringify(tasks.map((task) => task.toJSON()))
+    );
+  }
+
+  // Method to load tasks from local storage
+  loadTasks() {
+    const tasksData = JSON.parse(localStorage.getItem("tasks")) || [];
+    return tasksData.map((taskData) => Task.fromJSON(taskData));
+  }
+
+  removeProject(projectTitle, projects) {
+    const projectIndex = projects.findIndex(
+      (project) => project.title === projectTitle.textContent
+    );
+    if (projectIndex !== -1) {
+      projects.splice(projectIndex, 1);
+
+      if (projectTitle) {
+        projectTitle.parentElement.remove();
+      }
+
+      this.saveProjects(projects);
+    }
+  }
+
+  removeTask(taskTitleEl, tasks) {
+    console.log(taskTitleEl)
+    const taskTitle = taskTitleEl.querySelector(".todo-item-name").textContent;
+    const taskIndex = tasks.findIndex((task) => task.title === taskTitle);
+
+    if (taskIndex !== -1) {
+      tasks.splice(taskIndex, 1);
+
+      if (taskTitleEl) {
+        taskTitleEl.remove();
+      }
+
+      this.saveTasks(tasks);
+    }
+  }
 }
 
 const DOM_EVENTS = () => {
   const ui = new UI();
+
+  const projects = ui.loadProjects();
+  const tasks = ui.loadTasks();
+
+  // Display loaded projects
+  for (const project of projects) {
+    ui.addProject(project);
+  }
+
+  // Display loaded tasks
+  for (const task of tasks) {
+    ui.addTask(task);
+  }
 
   document.addEventListener("click", (e) => {
     if (e.target.matches("#add-project-btn")) {
@@ -197,7 +269,10 @@ const DOM_EVENTS = () => {
         );
 
       const project = new Project(projectTitle);
+      projects.push(project);
       ui.addProject(project);
+      ui.saveProjects(projects);
+
       ui.resetForm();
       ui.showMessage(`Project ${project.title} added successfully`, "success");
     }
@@ -270,7 +345,10 @@ const DOM_EVENTS = () => {
         form.priority.checked
       );
 
+      tasks.push(task);
       ui.addTask(task);
+      ui.saveTasks(tasks);
+
       ui.cancelTask();
       ui.showMessage(`Task ${task.title} added successfully`, "success");
     }
@@ -278,6 +356,15 @@ const DOM_EVENTS = () => {
     if (e.target.matches(".cancel-task-btn")) {
       e.preventDefault();
       ui.cancelTask();
+    }
+
+    if (e.target.matches("#not-complete")) {
+      console.log(e.target.parentElement)
+      ui.removeTask(e.target.parentElement, tasks);
+    }
+
+    if (e.target.matches("#remove-project")) {
+      ui.removeProject(e.target.nextElementSibling, projects);
     }
   });
 };
