@@ -199,7 +199,7 @@ class UI {
     return tasksData.map((taskData) => Task.fromJSON(taskData));
   }
 
-  removeProject(projectTitle, projects) {
+  removeProject(projectTitle, projects, tasksArr) {
     const projectIndex = projects.findIndex(
       (project) => project.title === projectTitle.textContent
     );
@@ -211,6 +211,14 @@ class UI {
       }
 
       this.saveProjects(projects);
+
+      const tasks = document.querySelectorAll(".todo");
+      tasks.forEach((task) => {
+        const taskProjEl = task.querySelector(".todo-proj");
+        if (projectTitle.textContent === taskProjEl.textContent) {
+          this.removeTask(task, tasksArr);
+        }
+      });
     }
   }
 
@@ -358,7 +366,7 @@ const DOM_EVENTS = () => {
     }
 
     if (e.target.matches("#remove-project")) {
-      ui.removeProject(e.target.nextElementSibling, projects);
+      ui.removeProject(e.target.nextElementSibling, projects, tasks);
     }
   });
 };
